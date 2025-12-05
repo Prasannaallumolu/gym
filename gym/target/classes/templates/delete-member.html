@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete Gym Member</title>
+    <style>
+        /* Background with soft peach-pink gradient */
+        body {
+            background-image: url('/image/img1.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Header Styling */
+        h1 {
+            color:red;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Centering the form */
+        .form-container {
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee); /* Light Lavender-Blue Gradient */
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 8px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        /* Read-only field styling */
+        .readonly {
+            background-color: #f0f0f0;
+            color: #555;
+            cursor: not-allowed;
+        }
+
+        /* Button Styling */
+        button {
+            background: #e63946; /* Coral Red */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #d62828;
+        }
+
+        /* Back Link */
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            background: #457b9d; /* Cool Blue */
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background: #1d3557;
+        }
+        
+       
+
+
+    </style>
+</head>
+<body>
+    <h1>Delete Gym Member</h1>
+    <div class="form-container">
+
+    
+        <p th:if="${error}" th:text="${error}" class="error"></p>
+        <p th:if="${success}" th:text="${success}"  class="success"></p>
+
+        <form th:action="@{/delete/{id}(id=${member.id})}" th:object="${member}" method="post">
+            <label>ID:</label><input type="number" th:field="*{id}" readonly class="readonly">
+            <label>Name:</label><input type="text" th:field="*{name}" readonly class="readonly">
+            <label>Email:</label><input type="text" th:field="*{email}" readonly class="readonly">
+            <label>Phone:</label><input type="text" th:field="*{phone}" readonly class="readonly">
+            <label>Membership Type:</label><input type="text" th:field="*{membership_type_id}" readonly class="readonly">
+            <label>Joining Date:</label><input type="date" th:field="*{joining_date}" readonly class="readonly">
+            <label>Status:</label><input type="text" th:field="*{status}" readonly class="readonly">
+
+            <button type="submit">Delete Gym Member</button>
+        </form>
+    </div>
+
+    <a href="/">Back</a>
+</body>
+</html>
